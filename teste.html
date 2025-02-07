@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site com Paleta de  Harmoniosa</title>
+    <style>
+        :root {
+            --primary: #4A90E2;
+            --secondary: #50E3C2;
+            --background: #F5F7FA;
+            --text: #333;
+            --accent: #F8E71C;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        nav {
+            background-color: var(--secondary);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        main {
+            display: flex;
+            padding: 20px;
+        }
+
+        section {
+            flex: 3;
+            padding: 20px;
+            background-color: white;
+            margin-right: 20px;
+            border-radius: 5px;
+        }
+
+        aside {
+            flex: 1;
+            background-color: var(--accent);
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        footer {
+            background-color: var(--text);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Meu Site</h1>
+    </header>
+    <nav>
+        <a href="#">Início</a>
+        <a href="#">Sobre</a>
+        <a href="#">Contato</a>
+    </nav>
+    <main>
+        <section>
+            <h2>Bem-vindo!</h2>
+            <p>Este é um site de exemplo utilizando uma paleta de cores harmoniosa.</p>
+            <button>Clique Aqui</button>
+        </section>
+        <aside>
+            <h3>Informações</h3>
+            <p>Alguns detalhes adicionais sobre o site.</p>
+        </aside>
+    </main>
+    <footer>
+        <p>&copy; 2025 Meu Site. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
