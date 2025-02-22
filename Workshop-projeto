@@ -1,0 +1,53 @@
+import streamlit as st
+import time
+
+def main():
+    st.title("Esse é meu título")
+    st.write("Um exemplo de txto")
+    
+    st.header("Input de texto")
+    input_text = st.text_input("Digite um texto aqui")
+    if input_text:
+        st.write("Você digitou: ", input_text)
+        
+        st.header("Seleção")
+        selected_option = st.selectbox("Selecione uma opção",[
+                                        "opção 1", "opção 2", "opção 3"])
+        if selected_option:
+            st.write("Opção selecionada: ", selected_option)
+        
+        st.header("slider")
+        slider_value = st.slider("Escolha um valor", 0, 100, 50)
+        st.write("valor escolhido: ", slider_value)
+
+        st.header("Checkbox")
+        
+        checkbox_state = st.checkbox ("Marque para ativar")
+        st.write("Checkbox ativado: ", checkbox_state)
+        
+        st.header("Botão")
+        if st.button("Clique aqui"):
+            st.write("Você clicou no botão!")
+            
+        st.header("Loading") 
+        with st.spinner("Aguarde..."):
+            time.sleep(3)
+        st.success("Carrregado com sucesso!")
+        
+        st.header("Upload de arquivo")
+        upload_file = st.file_uploader("Escolha um arquivo", type=["pdf","CSV"])
+        
+        if upload_file:
+            st.write("Nome do arquivo: ", upload_file.name)
+            
+            st.header("Gráfico")
+            data = {'x':[1,2,3,4,5], 'y':[10,20,30,40,50]}
+            st.line_chart(data)
+        
+main()
+    
+    
+    
+    
+    
+    
