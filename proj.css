@@ -1,0 +1,185 @@
+.container-header {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  color: red;
+  justify-content: space-around;
+}
+
+.menu ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li {
+  display: inline-block;
+}
+
+.menu a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.busca {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.busca input {
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.busca button {
+  padding: 5px 10px;
+  border: none;
+  background-color: red;
+  cursor: pointer;
+  border-radius: 5px;
+  color: white;
+}
+
+.container {
+  width: auto;
+  position: relative;
+  height: 300px;
+}
+
+@media (max-width: 768px) {
+  .container-header {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+.imagem-fundo {
+  width: 100vw;
+  height: auto;
+  display: block;
+}
+
+.overplay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.imagem-infinity {
+  width: 100px;
+  height: auto;
+}
+
+.container-texto {
+  padding: 10px;
+  height: 10px;
+}
+
+.overplay {
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 20px;
+  border-radius: 5px;
+  padding: 70px;
+  text-align: center;
+}
+
+.text button {
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+}
+
+.texto {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+}
+
+.coluna {
+  text-align: center;
+  width: 10%;
+  justify-content: space-between;
+}
+
+.coluna button {
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+}
+
+.coluna h4 {
+  color: red;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.container-back {
+  text-align: center;
+  margin-top: 500px;
+  padding: 100px;
+}
+
+.caixa {
+  border: 2px;
+  background-color: lightgray;
+  text-align: center;
+  height: 100px;
+}
+
+.caixa h4 {
+  color: red;
+}
+
+.main {
+  text-align: center;
+  background-color: red;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.main button {
+  background-color: white;
+  color: red;
+  font-style: normal;
+  border-radius: 5px;
+}
+
+.main input {
+  border-radius: 5px;
+}
+
+.container-footer {
+  color: red;
+  display: inline-flexbox;
+  margin: 50px;
+}
+
+.rodape {
+  text-align: right;
+}
+
+.container-footer h5 {
+  color: black;
+}
