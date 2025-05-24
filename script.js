@@ -1,31 +1,46 @@
-let numero1 = parseFloat(prompt("Digite o primeiro número:"));
-let numero2 = parseFloat(prompt("Digite o segundo número:"));
+const inputNota = document.getElementById("notaTitulo");
+const btnAdicionar = document.getElementById("btnAdicionar");
+const listaNotas = document.getElementById("listaNotas");
 
-let resultado = numero1;
+function carregarNotas() {
+  const notas = JSON.parse(localStorage.getItem("notas")) || [];
+  listaNotas.innerHTML = "";
 
-resultado += numero2;
-console.log(`Soma: ${resultado}`);
+  notas.forEach((titulo) => {
+    const li = document.createElement("li");
 
-resultado = numero1;
-resultado -= numero2;
-console.log(`Subtração: ${resultado}`);
+    const span = document.createElement("span");
+    span.textContent = titulo;
 
-resultado = numero1;
-resultado *= numero2;
-console.log(`Multiplicação: ${resultado}`);
+    const btnRemover = document.createElement("button");
+    btnRemover.textContent = "Remover";
+    btnRemover.addEventListener("click", () => removerNota(titulo));
 
-resultado = numero1;
-if (numero2 !== 0) {
-  resultado /= numero2;
-  console.log(`Divisão: ${resultado}`);
-} else {
-  console.log("Divisão por zero não é permitida.");
+    li.appendChild(span);
+    li.appendChild(btnRemover);
+    listaNotas.appendChild(li);
+  });
 }
 
-resultado = numero1;
-if (numero2 !== 0) {
-  resultado %= numero2;
-  console.log(`Resto da divisão: ${resultado}`);
-} else {
-  console.log("Não é possível calcular o resto da divisão por zero.");
+function adicionarNota() {
+  const titulo = inputNota.value.trim();
+  if (!titulo) return alert("Digite um título!");
+
+  let notas = JSON.parse(localStorage.getItem("notas")) || [];
+  if (notas.includes(titulo)) return alert("Título já existe!");
+
+  notas.push(titulo);
+  localStorage.setItem("notas", JSON.stringify(notas));
+  inputNota.value = "";
+  carregarNotas();
 }
+
+function removerNota(titulo) {
+  let notas = JSON.parse(localStorage.getItem("notas")) || [];
+  notas = notas.filter((n) => n !== titulo);
+  localStorage.setItem("notas", JSON.stringify(notas));
+  carregarNotas();
+}
+
+btnAdicionar.addEventListener("click", adicionarNota);
+window.addEventListener("load", carregarNotas);
