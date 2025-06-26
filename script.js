@@ -1,35 +1,72 @@
-const formulario = document.getElementById("formulario");
-const listaDados = document.getElementById("listaDados");
-const btnLimpar = document.getElementById("limparLista");
+const form = document.getElementById("formCadastro");
+const campos = ["nome", "usuario", "senha", "email", "nascimento"];
 
-formulario.addEventListener("submit", function (event) {
-  event.preventDefault();
+function limparErros() {
+  campos.forEach((campo) => {
+    document.getElementById("erro" + capitalizar(campo)).textContent = "";
+  });
+  document.getElementById("mensagemSucesso").textContent = "";
+}
 
-  const nome = document.getElementById("nome").value.trim();
-  const senha = document.getElementById("senha").value.trim();
-  const telefone = document.getElementById("telefone").value.trim();
-  const nascimento = document.getElementById("nascimento").value;
-  const email = document.getElementById("email").value.trim();
+function capitalizar(texto) {
+  return texto.charAt(0).toUpperCase() + texto.slice(1);
+}
 
-  if (!nome || !senha || !telefone || !nascimento || !email) {
-    console.error("Todos os campos devem ser preenchidos!");
-    alert("Preencha todos os campos corretamente.");
-    return;
+function validarCampos(dados) {
+  if (!dados.nome) throw { campo: "nome", mensagem: "O nome é obrigatório." };
+  if (!dados.usuario)
+    throw { campo: "usuario", mensagem: "O usuário é obrigatório." };
+  if (!dados.senha)
+    throw { campo: "senha", mensagem: "A senha é obrigatória." };
+  if (!dados.email.includes("@"))
+    throw { campo: "email", mensagem: "E-mail inválido." };
+  if (!dados.nascimento)
+    throw {
+      campo: "nascimento",
+      mensagem: "A data de nascimento é obrigatória.",
+    };
+
+  const idade = calcularIdade(new Date(dados.nascimento));
+  if (idade < 18)
+    throw {
+      campo: "nascimento",
+      mensagem: "É necessário ter 18 anos ou mais.",
+    };
+}
+
+function calcularIdade(dataNasc) {
+  const hoje = new Date();
+  let idade = hoje.getFullYear() - dataNasc.getFullYear();
+  const m = hoje.getMonth() - dataNasc.getMonth();
+  if (m < 0 || (m === 0 && hoje.getDate() < dataNasc.getDate())) {
+    idade--;
   }
+  return idade;
+}
 
-  const div = document.createElement("div");
-  div.innerHTML = `
-        <strong>Nome:</strong> ${nome} <br>
-        <strong>Telefone:</strong> ${telefone} <br>
-        <strong>Nascimento:</strong> ${nascimento} <br>
-        <strong>Email:</strong> ${email}
-        <hr>
-      `;
-  listaDados.appendChild(div);
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  limparErros();
 
-  formulario.reset();
-});
+  const dados = {
+    nome: document.getElementById("nome").value.trim(),
+    usuario: document.getElementById("usuario").value.trim(),
+    senha: document.getElementById("senha").value.trim(),
+    email: document.getElementById("email").value.trim(),
+    nascimento: document.getElementById("nascimento").value,
+  };
 
-btnLimpar.addEventListener("click", function () {
-  listaDados.innerHTML = "";
+  try {
+    validarCampos(dados);
+    document.getElementById("mensagemSucesso").textContent =
+      "Cadastro realizado com sucesso!";
+    form.reset();
+  } catch (erro) {
+    if (erro.campo && erro.mensagem) {
+      const idErro = "erro" + capitalizar(erro.campo);
+      document.getElementById(idErro).textContent = erro.mensagem;
+    } else {
+      console.error("Erro inesperado:", erro);
+    }
+  }
 });

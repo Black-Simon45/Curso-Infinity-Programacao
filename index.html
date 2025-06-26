@@ -4,28 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <title>Formulário de Eventos</title>
+    <title>Document</title>
   </head>
   <body>
-    <h1>Cadastro de Usuário</h1>
+    <h2>Cadastro de Usuário</h2>
 
-    <form id="formulario">
-      <input type="text" id="nome" placeholder="Nome de usuário" required />
-      <input type="password" id="senha" placeholder="Senha" required />
-      <input type="tel" id="telefone" placeholder="Telefone" required />
-      <input
-        type="date"
-        id="nascimento"
-        placeholder="Data de nascimento"
-        required
-      />
-      <input type="email" id="email" placeholder="Email" required />
-      <button type="submit">Enviar</button>
+    <form id="formCadastro" novalidate>
+      <label>Nome:</label>
+      <input type="text" id="nome" />
+      <div class="erro" id="erroNome"></div>
+
+      <label>Usuário:</label>
+      <input type="text" id="usuario" />
+      <div class="erro" id="erroUsuario"></div>
+
+      <label>Senha:</label>
+      <input type="password" id="senha" />
+      <div class="erro" id="erroSenha"></div>
+
+      <label>Email:</label>
+      <input type="email" id="email" />
+      <div class="erro" id="erroEmail"></div>
+
+      <label>Data de Nascimento:</label>
+      <input type="date" id="nascimento" />
+      <div class="erro" id="erroNascimento"></div>
+
+      <button type="submit">Cadastrar</button>
     </form>
 
-    <button id="limparLista">Limpar Lista</button>
-
-    <div id="listaDados" class="lista-info"></div>
+    <div class="sucesso" id="mensagemSucesso"></div>
     <script src="script.js"></script>
   </body>
 </html>
