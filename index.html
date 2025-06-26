@@ -4,36 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <title>Gerenciador de Tarefas Infinity</title>
+    <title>Formulário de Eventos</title>
   </head>
   <body>
-    <div class="container">
-      <header>
-        <img src="logo.png" alt="Infinity Logo" srcset="" width="400" />
-        <div class="titulo-container" id="titulo-container">
-          <h1>Gerenciador de Tarefas Infinity</h1>
-          <p id="slogan">Organize suas atividades! Bem vindo!</p>
-        </div>
-      </header>
+    <h1>Cadastro de Usuário</h1>
 
-      <form class="form-tarefa" id="form-tarefa">
-        <input
-          type="text"
-          id="input-tarefa"
-          placeholder="Adicione uma nova tarefa..."
-          required
-        />
-        <button type="submit" id="btn-adicionar">Adicionar</button>
-      </form>
+    <form id="formulario">
+      <input type="text" id="nome" placeholder="Nome de usuário" required />
+      <input type="password" id="senha" placeholder="Senha" required />
+      <input type="tel" id="telefone" placeholder="Telefone" required />
+      <input
+        type="date"
+        id="nascimento"
+        placeholder="Data de nascimento"
+        required
+      />
+      <input type="email" id="email" placeholder="Email" required />
+      <button type="submit">Enviar</button>
+    </form>
 
-      <ul id="lista-tarefas">
-        <li class="sem-tarefas" id="sem-tarefas">Nenhuma tarefa adicionada</li>
-      </ul>
+    <button id="limparLista">Limpar Lista</button>
 
-      <div class="contador-tarefas" id="contador-tarefas">
-        Total de tarefas: 0
-      </div>
-    </div>
+    <div id="listaDados" class="lista-info"></div>
     <script src="script.js"></script>
   </body>
 </html>
