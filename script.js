@@ -1,51 +1,35 @@
-const tituloContainer = document.getElementById("titulo-container");
-const input = document.getElementById("input-tarefa");
-const listaTarefas = document.getElementById("lista-tarefas");
-const botaoAdd = document.getElementById("btn-adicionar");
-const semTarefas = document.getElementById("sem-tarefas");
-const contadorTarefas = document.getElementById("contador-tarefas");
-const slogan = document.getElementById("slogan");
+const formulario = document.getElementById("formulario");
+const listaDados = document.getElementById("listaDados");
+const btnLimpar = document.getElementById("limparLista");
 
-//Recuperar valor da chave "usuario"
-//Se tem chave, mostrar valor da chave
-//Se não tem chave, pedir nome do usuário
+formulario.addEventListener("submit", function (event) {
+  event.preventDefault();
 
-if (!localStorage.getItem("usuario")) {
-  const NomeUsuario = prompt("Digite seu nome");
-  localStorage.setItem("usuario", NomeUsuario);
-}
+  const nome = document.getElementById("nome").value.trim();
+  const senha = document.getElementById("senha").value.trim();
+  const telefone = document.getElementById("telefone").value.trim();
+  const nascimento = document.getElementById("nascimento").value;
+  const email = document.getElementById("email").value.trim();
 
-const NomeUsuario = localStorage.getItem("usuario");
-slogan.innerText = `Organiza suas atividades, ${
-  !NomeUsuario ? "Visitante" : NomeUsuario
-}! Bem-Vindo!`;
-
-function atualizarTotal() {
-  const tamanhoUL = listaTarefas.children.length;
-  contadorTarefas.innerText = `Total de tarefas: ${tamanhoUL - 1}`;
-}
-
-function excluirTarefa(e) {
-  listaTarefas.removeChild(e.target.parentElement);
-  const tamanhoUL = listaTarefas.children.length;
-  if (tamanhoUL === 1) {
-    semTarefas.style.display = "block";
+  if (!nome || !senha || !telefone || !nascimento || !email) {
+    console.error("Todos os campos devem ser preenchidos!");
+    alert("Preencha todos os campos corretamente.");
+    return;
   }
-  atualizarTotal();
-}
-botaoAdd.addEventListener("click", (e) => {
-  semTarefas.style.display = "none";
-  e.preventDefault();
-  const novaTarefa = document.createElement("li");
-  novaTarefa.className = "tarefa";
-  novaTarefa.innerHTML = `
-        <input type=checkbox class="checkbox-tarefa">
-        <span class="tarefa-texto">${input.value}</span>
-        <button onclick=excluirTarefa(event) class="btn-excluir">Excluir</button>
-    `;
-  listaTarefas.appendChild(novaTarefa);
-  input.value = "";
-  input.focus();
-  atualizarTotal();
+
+  const div = document.createElement("div");
+  div.innerHTML = `
+        <strong>Nome:</strong> ${nome} <br>
+        <strong>Telefone:</strong> ${telefone} <br>
+        <strong>Nascimento:</strong> ${nascimento} <br>
+        <strong>Email:</strong> ${email}
+        <hr>
+      `;
+  listaDados.appendChild(div);
+
+  formulario.reset();
 });
-console.dir(input);
+
+btnLimpar.addEventListener("click", function () {
+  listaDados.innerHTML = "";
+});

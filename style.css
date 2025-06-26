@@ -1,140 +1,27 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
-
-* {
-  margin: 0;
-  padding: 0;
-  font-family: "Inter", sans-serif;
-}
-
 body {
-  background: linear-gradient(135deg, #d13c30 0%, #6e0d0d 100%);
-  color: #333;
-  line-height: 1.6;
-  padding: 20px;
-  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  margin: 30px;
 }
 
-.container {
-  max-width: 600px;
-  margin: 0 auto;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  padding: 30px;
+form {
+  margin-bottom: 20px;
 }
 
-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 30px;
-  gap: 20px;
-}
-
-.logo {
-  width: 60px;
-  height: 60px;
-  margin-bottom: 5px;
-}
-
-.titulo-container {
-  text-align: center;
-}
-
-h1 {
-  color: #d13c30;
-}
-
-.form-tarefa {
-  display: flex;
-  margin-bottom: 25px;
-}
-
-.form-tarefa input {
-  flex: 1;
-  padding: 12px 15px;
-  border: 1px solid #ddd;
-  border-radius: 5px 0 0 5px;
-  font-size: 16px;
-  outline: none;
-}
-
-.form-tarefa input:focus {
-  border-color: #d13c30;
-}
-
-.form-tarefa button {
-  background-color: #d13c30;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 0 5px 5px 0;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.lista-tarefas {
-  list-style: none;
-}
-
-.tarefa {
-  display: flex;
-  align-items: center;
-  padding: 15px;
-  background-color: #f9f9f9;
-  border-radius: 5px;
+input {
+  display: block;
   margin-bottom: 10px;
-  transition: transform 0.2s, box-shadow 0.2s;
-  border: 2px solid #d13c30;
+  padding: 6px;
+  width: 250px;
 }
 
-.tarefa:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-}
-
-.tarefa input[type="checkbox"] {
-  margin-right: 15px;
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-}
-
-.tarefa-texto {
-  flex: 1;
-  font-size: 16px;
-}
-
-.tarefa-concluida {
-  text-decoration: line-through;
-  color: #888;
-}
-
-.btn-excluir {
-  background-color: #d13c30;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 8px 12px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.btn-excluir:hover {
-  background-color: #b32a1f;
-}
-
-.sem-tarefas {
-  text-align: center;
-  color: #888;
-  font-style: italic;
-  padding: 20px 0;
-}
-
-.contador-tarefas {
-  text-align: center;
-  margin-top: 20px;
-  color: #666;
+.erro {
+  color: red;
   font-size: 14px;
+}
+
+.lista-info {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  width: fit-content;
 }
