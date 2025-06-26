@@ -1,46 +1,51 @@
-const inputNota = document.getElementById("notaTitulo");
-const btnAdicionar = document.getElementById("btnAdicionar");
-const listaNotas = document.getElementById("listaNotas");
+const tituloContainer = document.getElementById("titulo-container");
+const input = document.getElementById("input-tarefa");
+const listaTarefas = document.getElementById("lista-tarefas");
+const botaoAdd = document.getElementById("btn-adicionar");
+const semTarefas = document.getElementById("sem-tarefas");
+const contadorTarefas = document.getElementById("contador-tarefas");
+const slogan = document.getElementById("slogan");
 
-function carregarNotas() {
-  const notas = JSON.parse(localStorage.getItem("notas")) || [];
-  listaNotas.innerHTML = "";
+//Recuperar valor da chave "usuario"
+//Se tem chave, mostrar valor da chave
+//Se não tem chave, pedir nome do usuário
 
-  notas.forEach((titulo) => {
-    const li = document.createElement("li");
-
-    const span = document.createElement("span");
-    span.textContent = titulo;
-
-    const btnRemover = document.createElement("button");
-    btnRemover.textContent = "Remover";
-    btnRemover.addEventListener("click", () => removerNota(titulo));
-
-    li.appendChild(span);
-    li.appendChild(btnRemover);
-    listaNotas.appendChild(li);
-  });
+if (!localStorage.getItem("usuario")) {
+  const NomeUsuario = prompt("Digite seu nome");
+  localStorage.setItem("usuario", NomeUsuario);
 }
 
-function adicionarNota() {
-  const titulo = inputNota.value.trim();
-  if (!titulo) return alert("Digite um título!");
+const NomeUsuario = localStorage.getItem("usuario");
+slogan.innerText = `Organiza suas atividades, ${
+  !NomeUsuario ? "Visitante" : NomeUsuario
+}! Bem-Vindo!`;
 
-  let notas = JSON.parse(localStorage.getItem("notas")) || [];
-  if (notas.includes(titulo)) return alert("Título já existe!");
-
-  notas.push(titulo);
-  localStorage.setItem("notas", JSON.stringify(notas));
-  inputNota.value = "";
-  carregarNotas();
+function atualizarTotal() {
+  const tamanhoUL = listaTarefas.children.length;
+  contadorTarefas.innerText = `Total de tarefas: ${tamanhoUL - 1}`;
 }
 
-function removerNota(titulo) {
-  let notas = JSON.parse(localStorage.getItem("notas")) || [];
-  notas = notas.filter((n) => n !== titulo);
-  localStorage.setItem("notas", JSON.stringify(notas));
-  carregarNotas();
+function excluirTarefa(e) {
+  listaTarefas.removeChild(e.target.parentElement);
+  const tamanhoUL = listaTarefas.children.length;
+  if (tamanhoUL === 1) {
+    semTarefas.style.display = "block";
+  }
+  atualizarTotal();
 }
-
-btnAdicionar.addEventListener("click", adicionarNota);
-window.addEventListener("load", carregarNotas);
+botaoAdd.addEventListener("click", (e) => {
+  semTarefas.style.display = "none";
+  e.preventDefault();
+  const novaTarefa = document.createElement("li");
+  novaTarefa.className = "tarefa";
+  novaTarefa.innerHTML = `
+        <input type=checkbox class="checkbox-tarefa">
+        <span class="tarefa-texto">${input.value}</span>
+        <button onclick=excluirTarefa(event) class="btn-excluir">Excluir</button>
+    `;
+  listaTarefas.appendChild(novaTarefa);
+  input.value = "";
+  input.focus();
+  atualizarTotal();
+});
+console.dir(input);
